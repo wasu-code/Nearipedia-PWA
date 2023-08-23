@@ -2,7 +2,7 @@
   "name": "Nearipedia",
   "short_name": "Nearipedia",
   "description": "Encyclopedia of atractions near you",
-  "start_url": "/nearipedia-pwa",
+  "start_url": "/Nearipedia-PWA",
   "display": "standalone",
   "background_color": "#333333",
   "theme_color": "#2196F3",
