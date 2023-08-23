@@ -1,4 +1,5 @@
 export const Wikipedia = {
+  id: 'service1',
   name: 'Wikipedia',
   description: 'Displays erticles nera you in choosen language',
   hint: 'Enter a language code',

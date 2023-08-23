@@ -14,7 +14,24 @@ const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.pn
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+map.attributionControl.setPosition('topright');
+
+// Remove the default zoom control
+map.zoomControl.remove();
+
+// Create a new zoom control and set its position to middle-right
+const customZoomControl = L.control.zoom({ position: 'topright' });
+customZoomControl.addTo(map);
+
+// Calculate the middle of the map's height
+const middleHeight = map.getSize().y / 2;
+const zoomControlContainer = document.querySelector('.leaflet-control-zoom.leaflet-bar.leaflet-control');
+zoomControlContainer.style.top = `${middleHeight}px`;
+
 tileLayer.customLayerName = 'Tile Layer'
+
+
+importTags();
 
 
 // Function to be executed on bbox change
@@ -113,6 +130,7 @@ document.getElementById("button3").addEventListener("click", () => {
 
 function closeModal() {
   modal.style.display = 'none';
+  exportTags();
   updateMarkers();
 }
 
@@ -205,5 +223,25 @@ submitBtn.addEventListener('click', () => {
   closeModal();
 });
 
+function exportTags() {
+  let obj = {};
+  for (const service of Services) {
+    const serviceId = service.id;
+    obj[serviceId] = service.tags;
+  }
+  console.log(obj);
+  localStorage.setItem('nearipedia_settings', JSON.stringify(obj));
+}
 
+function importTags() {
+  let localStorageData = JSON.parse(localStorage.getItem('nearipedia_settings'));
+
+  for (const service of Services) {
+    const serviceId = service.id;
+    if (localStorageData && localStorageData[serviceId]) {
+      service.tags = localStorageData[serviceId];
+    }
+  }
+  console.log(Services);
+}
 

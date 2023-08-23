@@ -1,4 +1,5 @@
 export const OSM = {
+  id: 'service2',
   name: 'OpenStreetMap Tags',
   description: 'Displays OSM tags using Overpass API',
   hint: 'Enter a valid tag: key=value',
@@ -45,12 +46,16 @@ OSM.getLayers = async function ({ bbox }) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: `[out:json];node(${bbox})[${tag.value}];out;`
+          body: `[out:json];
+                (
+                  node[${tag.value}](${bbox});
+                );
+                out;`
         })
         const points = await response.json();
         const markersClusterGroup = L.markerClusterGroup(clusterOptions);
         for (const point of points.elements) {
-
+          /*if (point.type === 'node') {*/
           let subtags = '';
           for (const key in point.tags) {
             if (Object.hasOwnProperty.call(point.tags, key)) {
@@ -62,6 +67,7 @@ OSM.getLayers = async function ({ bbox }) {
 
           const marker = L.marker([point.lat, point.lon], { icon: customIcon(tag.icon) }).bindPopup(`Type: ${tag.label} <br/> <br/> ${subtags}`);
           markersClusterGroup.addLayer(marker);
+          /*}*/
         }
 
         markersClusterGroup.customLayerName = `${this.name}:${tag.label}`;
