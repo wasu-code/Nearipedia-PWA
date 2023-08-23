@@ -104,15 +104,42 @@ function removeAllMarkerLayers() {
   });
 }
 
+////
+if ('onbeforeinstallprompt' in window) {
+  let deferredPrompt;
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+    const installButton = document.getElementById('button1');
+
+    installButton.addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+      }
+    });
+  });
+}
+
 
 
 //// BUTTONS
 const modal = document.getElementById('modal');
 
 // Add event listeners to buttons
-document.getElementById("button1").addEventListener("click", () => {
+/*document.getElementById("button1").addEventListener("click", () => {
   // Button 1 functionality
-});
+  
+});*/
 
 document.getElementById("button2").addEventListener("click", () => {
   // Button 2 functionality
