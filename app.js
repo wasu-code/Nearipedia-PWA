@@ -170,24 +170,31 @@ function displayOptions() {
       tagElement.draggable = true;
       if (tag.isActive === true) tagElement.classList.add('selected');
 
+
       let holdTimeout;
-      tagElement.addEventListener('mousedown', () => {
+
+      function startHold() {
         tagElement.classList.add('deleting');
         holdTimeout = setTimeout(() => {
           service.tags.splice(index, 1);
           tagElement.remove();
         }, 2000);
-      });
+      }
 
-      tagElement.addEventListener('mouseup', () => {
+      function stopHold() {
         tagElement.classList.remove('deleting');
         clearTimeout(holdTimeout);
-      });
+      }
 
-      tagElement.addEventListener('mouseleave', () => {
-        tagElement.classList.remove('deleting');
-        clearTimeout(holdTimeout);
-      });
+      tagElement.addEventListener('mousedown', startHold);
+      tagElement.addEventListener('touchstart', startHold);
+
+      tagElement.addEventListener('mouseup', stopHold);
+      tagElement.addEventListener('mouseleave', stopHold);
+
+      tagElement.addEventListener('touchend', stopHold);
+      tagElement.addEventListener('touchcancel', stopHold);
+
 
       tagElement.addEventListener('click', () => { toggleTag(service, index, tagElement) });
       tagsContainer.appendChild(tagElement)
