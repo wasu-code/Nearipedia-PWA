@@ -49,13 +49,14 @@ OSM.getLayers = async function ({ bbox }) {
           body: `[out:json];
                 (
                   node[${tag.value}](${bbox});
+                  way[${tag.value}](${bbox});
+                  relation[${tag.value}](${bbox});
                 );
-                out;`
+                out center;`
         })
         const points = await response.json();
         const markersClusterGroup = L.markerClusterGroup(clusterOptions);
         for (const point of points.elements) {
-          /*if (point.type === 'node') {*/
           let subtags = '';
           for (const key in point.tags) {
             if (Object.hasOwnProperty.call(point.tags, key)) {
@@ -65,7 +66,17 @@ OSM.getLayers = async function ({ bbox }) {
             }
           }
 
-          const marker = L.marker([point.lat, point.lon], { icon: customIcon(tag.icon) }).bindPopup(`Type: ${tag.label} <br/> <br/> ${subtags}`);
+          let lat, lon;
+          if (point.type === 'node') {
+            lat = point.lat;
+            lon = point.lon;
+          } else {
+            lat = point.center.lat;
+            lon = point.center.lon;
+            subtags += '<br/> Center of way/polygon is shown';
+          }
+
+          const marker = L.marker([lat, lon], { icon: customIcon(tag.icon) }).bindPopup(`Type: ${tag.label} <br/> <br/> ${subtags}`);
           markersClusterGroup.addLayer(marker);
           /*}*/
         }
