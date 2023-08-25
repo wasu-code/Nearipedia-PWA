@@ -124,13 +124,18 @@ summary {
 
 /**/
 
-#trash {
-  padding: 0 20px;
+.tag {
+  transition: transform 2s ease-in-out;
 }
 
-#trash:hover:after {
-  content: 'drag tag here to delete';
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.7em;
-  vertical-align: super;
+.tag.deleting {
+  transform: scale(0);
+}
+
+.tag.deleting::after {
+  content: 'delete_sweep';
+  font-family: Material Icons;
+  font-size: 1em;
+  vertical-align: middle;
+  margin-left: .5em;
 }

@@ -196,8 +196,26 @@ function displayOptions() {
       tagElement.classList.add('tag');
       tagElement.draggable = true;
       if (tag.isActive === true) tagElement.classList.add('selected');
-      tagElement.dataset.service = service.id;
-      tagElement.dataset.index = index;
+
+      let holdTimeout;
+      tagElement.addEventListener('mousedown', () => {
+        tagElement.classList.add('deleting');
+        holdTimeout = setTimeout(() => {
+          service.tags.splice(index, 1);
+          tagElement.remove();
+        }, 2000);
+      });
+
+      tagElement.addEventListener('mouseup', () => {
+        tagElement.classList.remove('deleting');
+        clearTimeout(holdTimeout);
+      });
+
+      tagElement.addEventListener('mouseleave', () => {
+        tagElement.classList.remove('deleting');
+        clearTimeout(holdTimeout);
+      });
+
       tagElement.addEventListener('click', () => { toggleTag(service, index, tagElement) });
       tagsContainer.appendChild(tagElement)
     }
@@ -205,19 +223,6 @@ function displayOptions() {
     details.appendChild(tagsContainer);
     options.appendChild(details)
   }
-
-  /*drag to delete*/
-  const draggables = document.querySelectorAll('.tag');
-
-  draggables.forEach((draggable) => {
-    draggable.addEventListener('dragstart', () => {
-      draggable.classList.add('dragging');
-    });
-
-    draggable.addEventListener('dragend', () => {
-      draggable.classList.remove('dragging');
-    });
-  });
 }
 
 function toggleTag(service, tagIndex, element) {
@@ -288,24 +293,5 @@ function importTags() {
   }
   console.log(Services);
 }
-
-/*deleta tags*/
-
-const trash = document.getElementById('trash');
-
-trash.addEventListener('dragover', (e) => {
-  e.preventDefault();
-});
-
-trash.addEventListener('drop', (e) => {
-  e.preventDefault();
-  const ele = document.querySelector('.dragging');
-  for (const service of Services) {
-    if (service.id === ele.dataset.service) {
-      service.tags.splice(ele.dataset.index, 1)
-    }
-  }
-  ele.remove();
-});
 
 
