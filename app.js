@@ -79,7 +79,7 @@ function centerOnUserLocation() {
     navigator.geolocation.getCurrentPosition(position => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
-      map.setView([lat, lon], 13);
+      map.setView([lat, lon]);
     }, error => {
       console.error('Error getting user location:', error);
     });
@@ -193,14 +193,31 @@ function displayOptions() {
     for (const [index, tag] of service.tags.entries()) {
       const tagElement = document.createElement('div');
       tagElement.innerHTML = `<span class="material-icons">${tag.icon}</span> ${tag.label}`;
-      if (tag.isActive === true) tagElement.className = 'selected';
-      tagElement.addEventListener('click', () => { toggleTag(service, index, tagElement) })
+      tagElement.classList.add('tag');
+      tagElement.draggable = true;
+      if (tag.isActive === true) tagElement.classList.add('selected');
+      tagElement.dataset.service = service.id;
+      tagElement.dataset.index = index;
+      tagElement.addEventListener('click', () => { toggleTag(service, index, tagElement) });
       tagsContainer.appendChild(tagElement)
     }
 
     details.appendChild(tagsContainer);
     options.appendChild(details)
   }
+
+  /*drag to delete*/
+  const draggables = document.querySelectorAll('.tag');
+
+  draggables.forEach((draggable) => {
+    draggable.addEventListener('dragstart', () => {
+      draggable.classList.add('dragging');
+    });
+
+    draggable.addEventListener('dragend', () => {
+      draggable.classList.remove('dragging');
+    });
+  });
 }
 
 function toggleTag(service, tagIndex, element) {
@@ -271,4 +288,24 @@ function importTags() {
   }
   console.log(Services);
 }
+
+/*deleta tags*/
+
+const trash = document.getElementById('trash');
+
+trash.addEventListener('dragover', (e) => {
+  e.preventDefault();
+});
+
+trash.addEventListener('drop', (e) => {
+  e.preventDefault();
+  const ele = document.querySelector('.dragging');
+  for (const service of Services) {
+    if (service.id === ele.dataset.service) {
+      service.tags.splice(ele.dataset.index, 1)
+    }
+  }
+  ele.remove();
+});
+
 
