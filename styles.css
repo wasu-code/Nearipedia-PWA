@@ -101,7 +101,8 @@ body {
 }
 
 .tags-container>div.selected {
-  background-color: #443D33;
+  background-color: #6a4a1e;
+  /*#443D33*/
 }
 
 .popup {
