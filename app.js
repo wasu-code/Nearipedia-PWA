@@ -178,6 +178,7 @@ function displayOptions() {
         holdTimeout = setTimeout(() => {
           service.tags.splice(index, 1);
           tagElement.remove();
+          displayOptions();
         }, 2000);
       }
 
@@ -259,7 +260,7 @@ submitBtn.addEventListener('click', () => {
   }
 
   popup.style.display = 'none';
-  closeModal();
+  displayOptions();
 });
 
 function exportTags() {
