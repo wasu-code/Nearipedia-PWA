@@ -104,46 +104,17 @@ function removeAllMarkerLayers() {
   });
 }
 
-////
-if ('onbeforeinstallprompt' in window) {
-  let deferredPrompt;
-
-  window.addEventListener('beforeinstallprompt', (event) => {
-    event.preventDefault();
-    deferredPrompt = event;
-    const installButton = document.getElementById('button1');
-
-    installButton.addEventListener('click', () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-          } else {
-            console.log('User dismissed the install prompt');
-          }
-          deferredPrompt = null;
-        });
-      }
-    });
-  });
-}
-
-
-
 //// BUTTONS
-const modal = document.getElementById('modal');
+
 
 // Add event listeners to buttons
-/*document.getElementById("button1").addEventListener("click", () => {
+document.getElementById("button1").addEventListener("click", () => {
   // Button 1 functionality
-  
-});*/
+  displayInfo();
+});
 
 document.getElementById("button2").addEventListener("click", () => {
   // Button 2 functionality
-  modal.style.display = 'flex';
   displayOptions();
 });
 
@@ -176,9 +147,11 @@ window.addEventListener('click', (event) => {
 });
 
 
+const modal = document.getElementById('modal');
 
 function displayOptions() {
-  const options = document.getElementById('services-options');
+  modal.style.display = 'flex';
+  const options = document.getElementById('modal-content');
   options.innerHTML = '';
 
   for (const service of Services) {
@@ -223,6 +196,16 @@ function displayOptions() {
     details.appendChild(tagsContainer);
     options.appendChild(details)
   }
+}
+
+function displayInfo() {
+  modal.style.display = 'flex';
+  const ele = document.getElementById('modal-content');
+  ele.innerHTML = '';
+
+  const info = document.getElementById('infoPanel');
+  let clon = info.content.cloneNode(true);
+  ele.appendChild(clon);
 }
 
 function toggleTag(service, tagIndex, element) {
