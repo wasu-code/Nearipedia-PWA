@@ -6,6 +6,7 @@
   <title>Nearipedia</title>
 
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="/icons/favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"> <!--TODO: cache fonts?-->
@@ -34,8 +35,8 @@
         <div id="modal-content"></div>
 
         <template id="infoPanel">
-          <h2>Nearipedia: Encyclopedia of places near you</h2>
-          <img src="https://img.shields.io/github/actions/workflow/status/wasu-code/Nearipedia-PWA/pages/pages-build-deployment"/>
+          <h3>Nearipedia: Encyclopedia of places near you</h3>
+          <a href="https://github.com/wasu-code/Nearipedia-PWA">Project Homepage and Manuals</a>
         </template>
       </div>
 
@@ -56,6 +57,9 @@
         <button id="submitBtn">Submit</button>
       </div>
     </div>
+
+    <div id="messagebox"></div>
+
   </div>
 
   <script src="app.js" type="module"></script>

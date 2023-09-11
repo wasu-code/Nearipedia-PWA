@@ -1,7 +1,7 @@
 import { Wikipedia } from './services/Wikipedia.js';
 import { OSM } from './services/OSM.js';
 
-
+const messagebox = document.getElementById('messagebox');
 
 const Services = [OSM, Wikipedia]
 //// MAP
@@ -37,6 +37,8 @@ importTags();
 // Function to be executed on bbox change
 function updateMarkers() {
   if (map.getZoom() > 10) {
+    messagebox.style.display = 'none';
+
     const bbox = map.getBounds(); // Get the current bounding box
     const center = map.getCenter();
     const radius = Math.round(center.distanceTo([bbox._northEast.lat, bbox._northEast.lng]));
@@ -53,7 +55,8 @@ function updateMarkers() {
     }
 
   } else {
-    alert('Zoom in to display new markers')
+    messagebox.style.display = 'block';
+    messagebox.innerText = 'Zoom in to display new markers';
   }
 
 }
