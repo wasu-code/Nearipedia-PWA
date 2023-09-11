@@ -44,66 +44,128 @@ Te remove tag from your list simply hold it for 2 seconds until it disappears.
 
 ## Useful tags
 
-Tourism
+<details><summary>Tourism</summary>
 
-Sightseeing
++ `amenity=parking`
+  + `vending=parking_tickets`
++ `tourism=information`
++ `amenity=shelter` & `shelter=yes`
+  + `shelter_type=picnic_shelter`
++ `amenity=drinking_water` & `drinking_water=yes`
++ `tourism=artwork`
+  + `artwork_type=sculpture`
++ `tourism=viewpoint`
++ `leisure=picnic_table` & `amenity=bench` & `bench=yes`
++ `tourism=picnic_site`
++ `tourism=camp_site`
 
-Historic Tour
+  <details><summary>Bicycle Trips</summary>
 
-Basic Needs
+    ``
+
+  </details>
+
+  <details><summary>Hiking Trips</summary>
+
+
+
+  </details>
+
+  <details><summary>Sightseeing</summary>
+
+
+
+  </details>
+
+  <details><summary>Historic Tour</summary>
+
+  + `historic=yes`
+  + `historic=ruins`
+  + `historic=wayside_shrine`
+  + `archaeological_site=fortification`
+  + `memorial=war_memorial`
+  + `historic=tomb`
+  + `historic=castle`
+
+  </details>
+
+  <details><summary>Natural Areas</summary>
+
+  + `leisure=park`
+  + `natural=cliff`
+  + `leisure=picnic_table`
+  + `natural=spring`
+  + `natural=hill`
+  + `natural=stone`
+
+  </details>
+
+</details>
+
+<details><summary>Urbex</summary>
+
++ `ruins=yes`
++ `building=ruins` (*powinien oznaczać tylko budynki wzorowane na ruiny)
+
+</details>
+
+<details><summary>Basic Needs</summary>
+
++ `amenity=parking`
++ `amenity=toilets` & `toilets=yes`
+
+</details>
+
+
+
+
+
+
+
+
+
+
 
 Fastfood
+amenity=vending_machine
 
 Access=private
 Highway=crossing
-Amenity=parking
-leisure=park
-tourism=information
-shelter=yes
-natural=cliff
-amenity=shelter
-amenity=toilets
+
 man_made=tower
-amenity=drinking_water
-leisure=picnic_table
+
 man_made=manhole
-tourism=artwork
-amenity=vending_machine
-tourism=viewpoint
+
+
+
 man_made=bridge
 amenity=hospital
 man_made=surveillance
-building=ruins (*powinien oznaczać tylko budynki wzorowane na ruiny)
+
 railway=crossing
-natural=spring
+
 amenity=fountain
-historic=yes
-tourism=picnic_site
-historic=ruins
+
 man_made=water_tower
-tourism=camp_site
+
 building=hospital
-historic=wayside_shrine    kapliczki
+
 building=hotel
 place=island
-ruins=yes
+
 internet_access:fee=no
-artwork_type=sculpture
-drinking_water=yes
-shelter_type=picnic_shelter
+
+
 building=collapsed
 tourism=camp_pitch
 shop=variety_store
-vending=parking_tickets
-toilets=yes
+
 waterway=waterfall
 board_type=history
 leisure=fitness_station
 building=bunker
-memorial=war_memorial
-historic=tomb
-historic=castle
-natural=stone
+
+
 amenity=ice_cream
 barrier=city_wall
 landuse=flowerbed
@@ -112,8 +174,8 @@ amenity=water_point
 sport=climbing
 shop=beverages
 brand=McDonald's
-natural=hill
-archaeological_site=fortification
+
+
 shop=deli
 leisure=dog_park
 
@@ -121,9 +183,7 @@ leisure=dog_park
 amenity=waste_basket
 bin=yes
 
-leisure=picnic_table
-amenity=bench
-bench=yes
+
 
 Shop
 Bakery
