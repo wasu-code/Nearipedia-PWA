@@ -17,7 +17,7 @@ Nearipedia uses Wikipedia Geoserch API to display articles near you as well as O
 | Field | Value | Example |
 |:-----:|-------|---------|
 | `service` | `OpenStreetMap tags` or `Wikiedia language` | N/A |
-| `key and/or value` | For Wikipedia: [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) <br/> For OSM: tag or tag=value pair. (some regex can be used as well - see below) | `en`, `pl`, `de` |
+| `key and/or value` | **For Wikipedia**: [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) <br/> <br/> **For OSM**: tag or tag=value pair. (some regex can be used as well - see below) | `en`, `pl`, `de` <br/> <br/> `amenity=parking` |
 | `label/name` | (optional) | `Public Toilets` |
 | `icon` | emoticon or one of [Google Material Icons](https://marella.me/material-icons/demo) | `🅿️`, `local_parking`|
 
@@ -31,7 +31,6 @@ Nearipedia uses Wikipedia Geoserch API to display articles near you as well as O
 1. Display Tags by clicking middle button on the bottom of the screen
 2. Hold tag for about 2 seconds until it disappears.
 
----
 
 ## Useful tags
 
