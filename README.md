@@ -10,37 +10,27 @@ Nearipedia uses Wikipedia Geoserch API to display articles near you as well as O
 
 ## Adding tags/articles
 
-To add new tag/article click the middle button on the bottom of the screen and click on `Add tag` button. Popup with few input fields will apper.  
+1. Click the middle button on the bottom of the screen
+2. Click on `Add tag` button.
+3. Fill values in pop-up that appears:
 
-### Service
-
-First field let you choose between available services (currently Wikipedia and OSM). Select desired one from drop down menu
-
-### Key and Value
-
-+ Wikipedia Articles
-  > To add Wikipedia Articles to your map you need to insert a [language code (ISO 639-1)](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) into `key and value` field, for example `en` for english (it is added to map by default), `pl` for polish or `de` for german.
-
-+ OpenStreetMap Tags
-  > Every Element in OSM is described by tags. If you visit osm.org, and use cursor with questionmark button from the buttons on the right, you can click on the object to display its tags.
-
-### Label/Name
-
-You can type here whatever you want
-
-### Icon
-
-To customize icon on the map you can use a name form [Google Icons](https://fonts.google.com/icons) (remember to use lowercase character and replace sapces with underscores) or emojis.
+| Field | Value | Example |
+|:-----:|-------|---------|
+| `service` | `OpenStreetMap tags` or `Wikiedia language` | N/A |
+| `key and/or value` | **For Wikipedia**: [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) <br/> <br/> **For OSM**: tag or tag=value pair. (some regex can be used as well - see below) | `en`, `pl`, `de` <br/> <br/> `amenity=parking` |
+| `label/name` | (optional) | `Public Toilets` |
+| `icon` | emoticon or one of [Google Material Icons](https://marella.me/material-icons/demo) | `🅿️`, `local_parking`|
 
 ## Enabling/Disabling Tags
 
-To enable or disable tag click on its name in menu that appears after clicking middle button.
+1. Display Tags by clicking middle button on the bottom of the screen
+2. Click on tag
 
 ## Removing Tags
 
-Te remove tag from your list simply hold it for 2 seconds until it disappears.
+1. Display Tags by clicking middle button on the bottom of the screen
+2. Hold tag for about 2 seconds until it disappears.
 
----
 
 ## Useful tags
 
