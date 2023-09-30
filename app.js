@@ -174,10 +174,13 @@ function displayOptions() {
       if (tag.isActive === true) tagElement.classList.add('selected');
 
 
-      let holdTimeout;
+      let holdTimeout, pressTimeout;
 
       function startHold() {
-        tagElement.classList.add('deleting');
+        pressTimeout = setTimeout(() => {
+          tagElement.classList.add('deleting');
+        }, 300); //don't start animation on short press
+
         holdTimeout = setTimeout(() => {
           service.tags.splice(index, 1);
           tagElement.remove();
@@ -186,7 +189,10 @@ function displayOptions() {
       }
 
       function stopHold() {
-        tagElement.classList.remove('deleting');
+        setTimeout(() => {
+          tagElement.classList.remove('deleting');
+        }, 300); //remove class for animation AFTER it has been added
+        clearInterval(pressTimeout);
         clearTimeout(holdTimeout);
       }
 
