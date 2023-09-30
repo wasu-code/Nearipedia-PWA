@@ -8,6 +8,4 @@ It a encyclopedia of places near you. Tourist attactions? Nearest toilet? It can
 
 Nearipedia uses Wikipedia Geoserch API to display articles near you as well as Overpass API to fetch data from OpenStreetMap
 
-## [Manual](manual.html)
-
-<iframe src="manual.html"></iframe>
+## [Manual](manual.md)
