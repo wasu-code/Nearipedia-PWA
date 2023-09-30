@@ -158,3 +158,9 @@ summary {
   min-width: 50%;
   text-align: center;
 }
+
+.manual,
+.manual iframe {
+  width: 100%;
+  min-height: 30vh;
+}
