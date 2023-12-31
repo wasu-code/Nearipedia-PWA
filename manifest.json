@@ -1,11 +1,11 @@
 {
   "name": "Nearipedia",
   "short_name": "Nearipedia",
-  "description": "Encyclopedia of atractions near you",
+  "description": "Encyclopedia of POIs and utilities for travelers.",
   "start_url": "/Nearipedia-PWA",
   "display": "standalone",
-  "background_color": "#333333",
-  "theme_color": "#2196F3",
+  "background_color": "#353535",
+  "theme_color": "#f5981d",
   "icons": [
     {
       "src": "icons/icon.png",
@@ -17,5 +17,13 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "id": "nearipedia",
+  "dir": "ltr",
+  "lang": "en",
+  "orientation": "any",
+  "categories": [
+    "navigation",
+    "travel"
   ]
 }
