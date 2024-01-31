@@ -284,7 +284,6 @@ function exportTags() {
 
 function importTags() {
   let localStorageData = JSON.parse(localStorage.getItem('nearipedia_settings'));
-
   for (const service of Services) {
     const serviceId = service.id;
     if (localStorageData && localStorageData[serviceId]) {
@@ -294,4 +293,73 @@ function importTags() {
   console.log(Services);
 }
 
+/*remote storage*/
+
+
+// Our appstate object
+var services = {
+}
+
+// Construct and dependency inject
+const remoteStorage = new RemoteStorage({ changeEvents: { local: true, window: true, remote: true, conflicts: true } });
+remoteStorage.access.claim('nearipedia', 'rw');
+const client = remoteStorage.scope('/nearipedia/');
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function () {
+  var widget = new Widget(remoteStorage, { leaveOpen: true });
+  widget.attach('remotestorage-widget-anchor');
+  client.cache('');
+
+  // Register our application state JSON schema
+  //
+  // Documentation: https://remotestoragejs.readthedocs.io/en/latest/js-api/base-client.html#declareType
+  client.declareType('services', {
+    type: 'object',
+    properties: {
+      list: {
+        type: 'object'
+      }
+    },
+    required: ['list']
+  });
+
+  // React to application state changes from RS
+  //
+  // Documentation: https://remotestoragejs.readthedocs.io/en/latest/js-api/base-client.html#change-events
+  client.on('change', (event) => {
+    if (event.relativePath === 'services') {
+      services = event.newValue;
+
+      console.log(services);
+    }
+  });
+
+});
+
+// Change the application state within RS
+//
+// Documentation: https://remotestoragejs.readthedocs.io/en/latest/js-api/base-client.html#storeObject
+function setRS(newState) {
+  client.storeObject('services', 'services', newState);
+}
+
+document.getElementById('load-rs').addEventListener('click', () => {
+  for (const service of Services) {
+    const serviceId = service.id;
+    if (services.list[serviceId]) {
+      service.tags = services.list[serviceId];
+    }
+  }
+});
+
+document.getElementById('upload-rs').addEventListener('click', () => {
+  let obj = {};
+  for (const service of Services) {
+    const serviceId = service.id;
+    obj[serviceId] = service.tags;
+  }
+  client.storeObject('services', 'services', { list: obj });
+  console.log(obj)
+})
 

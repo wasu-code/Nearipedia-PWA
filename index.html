@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.0/MarkerCluster.Default.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.0/leaflet.markercluster.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/remotestoragejs@latest/release/remotestorage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/remotestorage-widget@latest/build/widget.js"></script>
 </head>
 <body>
   <div class="container">
@@ -42,8 +44,10 @@
             class="manual">
               <iframe src="manual.md">Something went wrong</iframe>
           </object>
-          
         </template>
+        <div id="remotestorage-widget-anchor"></div>
+        <button id="load-rs">Load data from remote storage</button>
+        <button id="upload-rs">Upload data to remote storage</button>
       </div>
 
       <div class="popup" id="popup">
