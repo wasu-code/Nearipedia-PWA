@@ -74,7 +74,8 @@ body {
 .leaflet-pane.leaflet-marker-pane .material-icons {
   text-align: center;
   color: var(--color-background-primary);
-  border: 1px solid #DFDFDF;
+  /*border: 1px solid #DFDFDF;*/
+  text-shadow: -1px 0 #DFDFDF, 0 1px #DFDFDF, 1px 0 #DFDFDF, 0 -1px #DFDFDF;
   color-scheme: only light;
 }
 
